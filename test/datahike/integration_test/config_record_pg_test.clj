@@ -14,7 +14,10 @@
   (it/integration-test-fixture config)
   (f))
 
-(use-fixtures :once config-record-pg-test-fixture)
+; We use :each here instead of :once to skip running the test fixtures
+; when the :integration test selector is disabled
+; https://github.com/technomancy/leiningen/issues/1269
+(use-fixtures :each config-record-pg-test-fixture)
 
 (deftest ^:integration config-record-pg-test []
   (it/integration-test config))
